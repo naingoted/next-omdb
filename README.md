@@ -12,13 +12,40 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-https://www.omdbapi.com/?s=hello&apikey=aeeb0c75
+## Dir
+
+### Page list
+
+    page
+        index - homepage contains movies components
+
+### Components list
+
+    components 
+        Header - for global header
+        Movies - for movies module
+        UI  - for layout and UI components
+### Hooks
+
+    hooks - for custom hooks
+### Testing
+ 
+    __tests__ - for test files
+        components - named according to /components structure
+            UI
+
+### Styling
+    styles - named according to /components structure.
+
+
 
 @todo
-fix api
+fix api - done
 unit test search and components
-must use sass
+    - test search input - mock
+    - test movie list
+must use sass - done
 style moblile responsive
-add infinite scroll
-work on context api
+add infinite scroll - added pagination.
+work on context api - 
 replace with redux

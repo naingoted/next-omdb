@@ -2,7 +2,7 @@ import Nav from '../Header/Nav';
 
 const Layout = ({children}) => {
     return (
-        <div className="wrapper">
+        <div className="wrapper" data-testid="app-wrapper">
             <Nav/>
             <main className="main">
             {children}

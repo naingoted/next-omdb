@@ -9,7 +9,7 @@
 html {
     font-size: 62.5%;
 
-    // @include respond(tab-land){
+    // @include respond(phone){
     //     font-size: 56.25%;
     // }
 
@@ -24,16 +24,17 @@ html {
 
 body {
     box-sizing: border-box;
-    padding: 3rem;
     @include respond(tab-port){
         padding: 0;
     }
     font-family: $font-primary;
+    background-color: #dad9dd;
 }
 
 nav {
     font-size: 1.8rem;
     font-weight: bold;
+    background-color: white;
 }
 
 main {

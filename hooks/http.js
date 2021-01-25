@@ -50,15 +50,22 @@ const useHttp = () => {
         }
       })
         .then(response => {
-          console.log(response);
           return response.json();
         })
         .then(responseData => {
-          dispatchHttp({
-            type: 'RESPONSE',
-            responseData: responseData,
-            extra: reqExtra
-          });
+          if(responseData.Response && responseData.Response === "True") {
+            dispatchHttp({
+              type: 'RESPONSE',
+              responseData: responseData,
+              extra: reqExtra
+            });
+          } else {
+            dispatchHttp({
+              type: 'ERROR',
+              errorMessage: responseData.Error
+            });
+          }
+
         })
         .catch(error => {
           dispatchHttp({
