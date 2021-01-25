@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useReducer, useCallback } from 'react';
 
 const initialState = {
@@ -41,6 +42,7 @@ const useHttp = () => {
 
   const sendRequest = useCallback(
     (url, method, body, reqExtra, reqIdentifer) => {
+      console.log(url, method, body, reqExtra, reqIdentifer);
       dispatchHttp({ type: 'SEND', identifier: reqIdentifer });
       fetch(url, {
         method: method,
@@ -77,6 +79,30 @@ const useHttp = () => {
     []
   );
 
+  const getMoviesByTitle = useCallback(
+    async (searchTitle, page) => {
+      try {
+        dispatchHttp({ type: 'SEND', identifier: 'getMoviesByTitle' });
+        const response = await axios.get(`/api/omdb/?apikey=${process.env.NEXT_PUBLIC_ENV_OMDBAPI}&s="${searchTitle}"&page=${page}`);
+        if(response.data.Response === "True") {
+          dispatchHttp({ type: 'RESPONSE', responseData: response.data });
+        } else {
+          setError(response.data.Error)
+        }
+      } catch (error) {
+        const errorMessage = 'API ERROR :' + error.response.status + ' ' + error.response.statusText
+        setError(errorMessage)
+      }
+    }, []
+  )
+  const setError = useCallback(
+    (message) => {
+      dispatchHttp({
+        type: 'ERROR',
+        errorMessage: message
+      });
+    }
+  )
   return {
     isLoading: httpState.loading,
     data: httpState.data,
@@ -84,7 +110,9 @@ const useHttp = () => {
     sendRequest: sendRequest,
     reqExtra: httpState.extra,
     reqIdentifer: httpState.identifier,
-    clear: clear
+    clear: clear,
+    setError,
+    getMoviesByTitle
   };
 };
 

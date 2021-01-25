@@ -25,6 +25,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
         Header - for global header
         Movies - for movies module
         UI  - for layout and UI components
+
+### Contexts
+
+    contexts
+        
 ### Hooks
 
     hooks - for custom hooks

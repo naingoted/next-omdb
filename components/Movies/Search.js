@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Card from '../UI/Card';
-import ErrorModal from '../UI/ErrorModal';
+import React, { useState, useRef } from 'react';
 
-import useHttp from '../../hooks/http';
 
 const Search = React.memo(({onSetTitle, placeholder}) => {
     const [enteredFilter, setEnteredFilter] = useState(placeholder);
     const inputRef = useRef();
+    console.log('RENDERING Search');
     // const { isLoading, data, error, sendRequest, clear } = useHttp();
     // useEffect(() => {
     //   const timer = setTimeout(() => {
@@ -33,7 +31,6 @@ const Search = React.memo(({onSetTitle, placeholder}) => {
     // }, [data, isLoading, error, onLoadIngredients]);
     const handleKeyDown = e => {
       if (e.key === 'Enter') {
-        console.log('do validate');
         onSetTitle(enteredFilter);
       } else if (e.key === 'Escape') {
         setEnteredFilter('');

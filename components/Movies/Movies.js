@@ -1,46 +1,23 @@
-import { useReducer, useEffect, useCallback, useMemo } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
+import { useMovieState, useMovieDispatch } from '../../contexts/moviesContext'
+
 import ErrorModal from '../UI/ErrorModal';
 import Search from './Search';
 import useHttp from '../../hooks/http';
 import MovieList from './MovieList';
 import Pagination from '../UI/Pagination';
-/**
- * Using reducer instead of useState for cleaner state managment
- */
-const inititalState = {
-    searchTitle: "label", 
-    searchResults: [],
-    message: null,
-    page: 1,
-    total: 0
-}
-const movieReducer = (state, action) => {
-    switch (action.type) {
-      case 'setTitle':
-        return { ...state, searchTitle: action.payload }
-      case 'setData':
-        return { ...state, searchResults: action.payload }
-      case 'setMessage':
-        return { ...state, message: action.payload }
-      case 'setTotal':
-        return { ...state, total: action.payload }
-      case 'setPage':
-        return { ...state, page: action.payload }
-      default:
-        throw new Error('Should not get there!');
-    }
-};
 
 const Movies = () => {
-    const [state, dispatch] = useReducer(movieReducer, inititalState);
+    const { searchTitle, searchResults, page, total} = useMovieState();
+    const dispatch = useMovieDispatch();
     const {
         isLoading,
         data,
-        sendRequest,
         error,
+        getMoviesByTitle,
         clear
     } = useHttp();
-    console.log('RENDERING Movies', state);
+    console.log('RENDERING Movies');
     const onSetTitle = useCallback( title => {
             dispatch({ type: 'setPage', payload: 1 });
             dispatch({ type: 'setTitle', payload: title });
@@ -48,27 +25,20 @@ const Movies = () => {
     const movieList = useMemo(() => {
         return (
         <MovieList
-            movies={state.searchResults}
+            movies={searchResults}
             isLoading={isLoading}
         />
         );
-    }, [state.searchResults, isLoading]);
+    }, [searchResults, isLoading]);
     const onNextPage = () => {
-        let page = state.page;
-        page++;
-        dispatch({ type: 'setPage', payload: page });
+        dispatch({ type: 'setPageIncrement'});
     }; 
     const onPrevPage = () => {
-        let page = state.page;
-        page--;
-        dispatch({ type: 'setPage', payload: page });
+        dispatch({ type: 'setPageDecrement'});
     }; 
     useEffect(() => {
-        sendRequest(
-            `/api/omdb/?apikey=${process.env.NEXT_PUBLIC_ENV_OMDBAPI}&s="${state.searchTitle}"&page=${state.page}`,
-            'GET'
-        );
-    }, [state.searchTitle, state.page])
+        getMoviesByTitle(searchTitle, page);
+    }, [searchTitle, page])
 
     useEffect(() => {
         if(!isLoading && !error && data) {
@@ -78,16 +48,16 @@ const Movies = () => {
             }
         }
 
-    },[isLoading,error,data, state.searchTitle])
+    },[isLoading,error,data, searchTitle])
 
     return (
-        <div className="movies">
+        <div className="movies" data-testid="movies-app">
         {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
-            <Search onSetTitle={onSetTitle} placeholder={state.searchTitle}/>
-            {/* {isLoading ?  <LoadingIndicator /> : state.message ? <div className="message"> showing results for : {state.searchTitle}</div> : null} */}
+            <Search onSetTitle={onSetTitle} placeholder={searchTitle}/>
             {movieList}
-            <Pagination page={state.page} total={state.total} onNextPage={onNextPage} onPrevPage={onPrevPage} isLoading={isLoading}/>
+            <Pagination page={page} total={total} onNextPage={onNextPage} onPrevPage={onPrevPage} isLoading={isLoading}/>
         </div>
+
     );
 };
 

@@ -1,4 +1,5 @@
 const Nav = () => {
+    console.log('RENDERING Nav');
     return (
         <nav className="nav-bar">
             <div className="logo">

@@ -1,6 +1,7 @@
 import Nav from '../Header/Nav';
 
 const Layout = ({children}) => {
+    console.log('RENDERING Layout');
     return (
         <div className="wrapper" data-testid="app-wrapper">
             <Nav/>
