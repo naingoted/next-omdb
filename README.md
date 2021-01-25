@@ -29,12 +29,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Contexts
 
     contexts
-        
+
 ### Hooks
 
     hooks - for custom hooks
 ### Testing
- 
+    integration testing to make sure pagination logic, hooks and context
     __tests__ - for test files
         components - named according to /components structure
             UI
@@ -44,13 +44,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 
-@todo
-fix api - done
-unit test search and components
-    - test search input - mock
-    - test movie list
-must use sass - done
-style moblile responsive
-add infinite scroll - added pagination.
-work on context api - 
-replace with redux

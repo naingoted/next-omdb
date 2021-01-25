@@ -1,33 +1,59 @@
 .movies {
     // didn't put movie here because of performace consideration.
-    margin: 2rem;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 1.6rem;
+}
+.movie-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include respond (tab-land) {
+        justify-content: space-evenly;  
+    }
 }
 .movie {
-    max-width: 50rem;
-    margin: 2rem auto;
+    flex-grow: 1;
+    max-width: 38rem;
+    margin: 1.5rem 0;
     height: 15.5rem;
     overflow: hidden;
+    display: -webkit-flex;
+    display: -moz-box;
     display: flex;
     background-color: white;
     padding: 0;
     &__img{
         position: relative;
         width: 25.2rem;
-        flex-basis: calc(50% - 1rem);
         img {
             // width: 25rem;
             border-radius: 0.5rem 0 0 0.5rem;
         }
     }
     &__info {
+        position: relative;
         flex-grow: 1;
-        padding: 1rem 3rem;
+        padding: 1rem 2.5rem;
         background-color: $color-bg;
-        flex-basis: calc(50% - 1rem);
+        flex-basis: calc(68% - 1rem);
         @include respond(phone){
             padding: 1rem;
             transform: none;
         }
+        &:before {
+            content: '';
+            width: 26px;
+            height: 100%;
+            background: white;
+            display: block;
+            /* overflow: hidden; */
+            position: absolute;
+            left: -13px;
+            top: 0;
+            transform: skewX(-9deg);
+        }
+        
     }
     &__title {
         font-weight: bold;
@@ -44,8 +70,9 @@
         }
     }
     &__year {
-        font-size: 1.9rem;
+        font-size: 1.8rem;
         // transform: skewX(10deg);
+        color: $color-tertiary;
         @include respond(phone){
             transform: none;
         }
@@ -64,7 +91,7 @@
     }
     
     &-input {
-        width: 350px;
+        width: 35rem;
         max-width: 100%;
         border-radius: 5px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -74,5 +101,15 @@
         // &--title {
         //     width: 300px;
         // }
+    }
+}
+
+.control-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    @include respond(phone){
+        flex-direction: column;
     }
 }

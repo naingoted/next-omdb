@@ -53,9 +53,11 @@ const Movies = () => {
     return (
         <div className="movies" data-testid="movies-app">
         {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
-            <Search onSetTitle={onSetTitle} placeholder={searchTitle}/>
+            <div className="control-wrapper">
+                <Search onSetTitle={onSetTitle} placeholder={searchTitle}/>
+                <Pagination page={page} total={total} onNextPage={onNextPage} onPrevPage={onPrevPage} isLoading={isLoading}/>
+            </div>
             {movieList}
-            <Pagination page={page} total={total} onNextPage={onNextPage} onPrevPage={onPrevPage} isLoading={isLoading}/>
         </div>
 
     );
