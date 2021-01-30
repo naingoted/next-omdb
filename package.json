@@ -9,6 +9,14 @@
     "test": "jest --watch",
     "test:ci": "jest --ci"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileTransformer.js"
+    }
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "next": "10.0.5",

@@ -1,59 +1,36 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 
-
-const Search = React.memo(({onSetTitle, placeholder}) => {
-    const [enteredFilter, setEnteredFilter] = useState(placeholder);
-    const inputRef = useRef();
-    console.log('RENDERING Search');
-    // const { isLoading, data, error, sendRequest, clear } = useHttp();
-    // useEffect(() => {
-    //   const timer = setTimeout(() => {
-    //       if (enteredFilter === inputRef.current.value) {
-    //         sendRequest(
-    //           `/api/omdb/?apikey=${process.env.NEXT_PUBLIC_ENV_OMDBAPI}&s="${enteredFilter}"`,
-    //           'GET'
-    //         );
-    //       }
-    //   }, 500);
-    //   return () => {
-    //     clearTimeout(timer);
-    //   };
-    // }, [enteredFilter, inputRef, sendRequest]);
-    
-    // useEffect(() => {
-    //   if (!isLoading && !error && data) {
-    //     const loadedIngredients = [];
-    //     if(data.Search && data.Search.length){
-    //       loadedIngredients.push(...data.Search);
-    //     }
-    //     onLoadIngredients(loadedIngredients);
-    //   }
-    // }, [data, isLoading, error, onLoadIngredients]);
-    const handleKeyDown = e => {
-      if (e.key === 'Enter') {
-        onSetTitle(enteredFilter);
-      } else if (e.key === 'Escape') {
-        setEnteredFilter('');
-        inputRef && inputRef.current.focus() 
-      }
+const Search = React.memo(({ onSetTitle, placeholder }) => {
+  const [enteredFilter, setEnteredFilter] = useState(placeholder);
+  const inputRef = useRef();
+  console.log("RENDERING Search");
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onSetTitle(enteredFilter);
+    } else if (e.key === "Escape") {
+      setEnteredFilter("");
+      inputRef && inputRef.current.focus();
     }
-    return (
-      <section className="search">
-          <div className="search-input">
-            <span className="search-icon"><img src="/images/loupe.svg" alt=""/></span>
-            <input
-              data-testid="input-box"
-              className="input input--title"
-              placeholder="Search Movies"
-              ref={inputRef}
-              type="text"
-              value={enteredFilter}
-              onChange={event => setEnteredFilter(event.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-          </div>
-      </section>
-    );
-  });
-  
-  export default Search;
+  };
+  return (
+    <section className="search">
+      <div className="search-input">
+        <span className="search-icon">
+          <img src="/images/loupe.svg" alt="" />
+        </span>
+        <input
+          data-testid="input-box"
+          className="input input--title"
+          placeholder="Search Movies"
+          ref={inputRef}
+          type="text"
+          value={enteredFilter}
+          onChange={(event) => setEnteredFilter(event.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+    </section>
+  );
+});
+
+export default Search;

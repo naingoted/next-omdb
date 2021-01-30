@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import Movies from '../components/Movies/Movies';
-import { MovieProvider } from '../contexts/moviesContext';
+import Head from "next/head";
+import Movies from "../components/Movies/Movies";
+import { MovieProvider } from "../contexts/moviesContext";
 
 export default function Home() {
   return (
@@ -11,5 +11,5 @@ export default function Home() {
       </Head>
       <Movies />
     </MovieProvider>
-  )
+  );
 }

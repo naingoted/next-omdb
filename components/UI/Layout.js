@@ -1,15 +1,13 @@
-import Nav from '../Header/Nav';
+import Nav from "../Header/Nav";
 
-const Layout = ({children}) => {
-    console.log('RENDERING Layout');
-    return (
-        <div className="wrapper" data-testid="app-wrapper">
-            <Nav/>
-            <main className="main">
-            {children}
-            </main>
-        </div>
-    )
-}
+const Layout = ({ children }) => {
+  console.log("RENDERING Layout");
+  return (
+    <div className="wrapper" data-testid="app-wrapper">
+      <Nav />
+      <main className="main">{children}</main>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

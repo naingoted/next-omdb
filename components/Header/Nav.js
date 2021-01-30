@@ -1,13 +1,13 @@
 const Nav = () => {
-    console.log('RENDERING Nav');
-    return (
-        <nav className="nav-bar">
-            <div className="logo">
-                <span>hey</span>
-                <span>cinema</span>
-            </div>
-        </nav>
-    )
-}
+  console.log("RENDERING Nav");
+  return (
+    <nav className="nav-bar">
+      <div className="logo">
+        <span>hey</span>
+        <span>cinema</span>
+      </div>
+    </nav>
+  );
+};
 
-export default Nav
+export default Nav;

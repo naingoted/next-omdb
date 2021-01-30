@@ -1,48 +1,48 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 
-    // @include respond(phone){
-    //     font-size: 56.25%;
-    // }
+  // @include respond(phone){
+  //     font-size: 56.25%;
+  // }
 
-    // @include respond(tab-port){
-    //     font-size: 50%;
-    // }
+  // @include respond(tab-port){
+  //     font-size: 50%;
+  // }
 
-    // @include respond(big-desktp){
-    //     font-size: 75%;
-    // }
+  // @include respond(big-desktp){
+  //     font-size: 75%;
+  // }
 }
 
 body {
-    box-sizing: border-box;
-    @include respond(tab-port){
-        padding: 0;
-    }
-    font-family: $font-primary;
-    background-color: #dad9dd;
+  box-sizing: border-box;
+  @include respond(tab-port) {
+    padding: 0;
+  }
+  font-family: $font-primary;
+  background-color: #efeef4;
 }
 
 nav {
-    font-size: 1.8rem;
-    font-weight: bold;
-    background-color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background-color: white;
 }
 
 main {
-    font-size: $default-font-size;
-    font-weight: normal;
-    margin: 0 auto;
+  font-size: $default-font-size;
+  font-weight: normal;
+  margin: 0 auto;
 }
